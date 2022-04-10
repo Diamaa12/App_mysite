@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forum</title>
+</head>
+<body>
+    <h1>Ceci est un test. </h1>
+     <div>
+        <h2>Liste d'utilisateurs inscrits sur le site.</h2>
+        {% for data in users %}
+            <h3>Perso: {{ data }}</h3>
+        {% endfor %}
+    </div>
+    <form method="POST" action="{% url 'add-contact' %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="Name"><br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br>
+        <label for="age">Âge:</label>
+        <input type="number" id="age" name="age"><br>
+        <label for="message">Message:</label>
+        <textarea name="message" id="message" rows="4"></textarea><br>
+        <button type="submit">Postuler</button>
+    </form>
+
+</body>
+</html>

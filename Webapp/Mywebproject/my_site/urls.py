@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .vues import index
-from webapp.views import index_webapp, add_contact
+from webapp.views import index_webapp, add_contact, del_contact
 
 urlpatterns = [
     path('', index, name="index"),
     path('admin/', admin.site.urls),
-    path('webapp', index_webapp, name="web-app"),
-    path('add', add_contact, name="add-contact")
+    path('webapp', index_webapp, name="leyssare"),
+    path('add', add_contact, name="add-contact"),
+    path("del-contact", del_contact, name="del_contact")
 ]

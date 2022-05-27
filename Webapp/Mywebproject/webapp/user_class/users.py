@@ -25,9 +25,6 @@ class Users:
             cursor.execute(requete, data)
             DB.commit()
             DB.close()
-
-
-            print("Base crée avec succée !")
         except SyntaxError as e:
             print(f"L'erreur suivant {e} est survenu")
     def recup_data(self):
@@ -40,6 +37,23 @@ class Users:
         DB.commit()
         DB.close()
         return perso
+    def del_data(self, name):
+        DB = sqlite3.connect(self.dir)
+        cursor = DB.cursor()
+        req = f"SELECT * FROM user WHERE Name == '{name}'"
+        r = cursor.execute(req)
+        '''IL faut essayer de resoudre le cas ou l'utilisateur n'existe pas'''
+        user = len(r.fetchall())
+        if user == 0 :
+            print("L'utilisateur n'exite pas encore. ")
+            return False
+        else:
+             rqst = f"DELETE FROM user WHERE Name = '{name}' "
+             cursor.execute(rqst)
+             print(f"{name} supprimé avec succés! ")
+             DB.commit()
+             DB.close()
+             return True
 
 
 fake = faker.Faker(locale="de_DE")
@@ -50,5 +64,8 @@ message = fake.text()
 users = Users(name, user_name, age, message)
 
 if __name__ == "__main__":
-    users.enrgistrer()
-    users.recup_data()
+    #users.enrgistrer()
+    #users.recup_data()
+    n = input("Taper votre nom")
+    r = users.del_data(n)
+    print(r)

@@ -44,9 +44,11 @@
              <input type="text" id="delete" name="name-to-del"><br>
              <button type="submit" class="btn btn-primary">Supprimer</button>
         </form>
-
-        <h3 class="notUV">L'utilisateur {{ notVU }} n'est pas inscrit sur le site.</h3>
-
+        {% if notVU %}
+            <h3 class="notVU">L'utilisateur {{ notVU }} n'est pas inscrit sur le site.</h3>
+        {% elif user_exist %}
+            <h3 class="notVU">Vous venez de supprimé l'utilisateur {{ user_exist }}</h3>
+        {% endif %}
     </div>
 </body>
 </html>

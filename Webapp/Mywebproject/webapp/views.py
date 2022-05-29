@@ -39,4 +39,5 @@ def del_contact(request):
         return  render(request, "forum.html", {'notVU':name_to_del})
     else:
         typer.secho(f"L'utilsateur {name_to_del} supprimé avec succés.", fg=typer.colors.RED)
-    return redirect("leyssare")
+        return render(request, "forum.html", {'user_exist':name_to_del})
+   # return redirect("leyssare")
